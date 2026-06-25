@@ -1,0 +1,9 @@
+.env
+*.sqlite3
+*.db
+*.log
+__pycache__/
+.server-access/
+secrets/
+*.pem
+*.key

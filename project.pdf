@@ -1,0 +1,16 @@
+import re
+
+BRAND_WORDS = ["gazpromneft", "газпромнефть", "g-energy", "sintec", "zic", "rolf", "teboil"]
+DROP_WORDS = ["кошелек", "щенок", "потерян", "найден", "велосервис"]
+
+def prefilter(text: str) -> tuple[bool, str]:
+    t = text.lower()
+    if any(word in t for word in DROP_WORDS):
+        return False, "obvious_irrelevant"
+    if not any(word in t for word in BRAND_WORDS):
+        return False, "missing_theme_brand"
+    return True, "send_to_gpt"
+
+if __name__ == "__main__":
+    sample = "Велосервис Велоремонт Велозапчасти"
+    print(prefilter(sample))
